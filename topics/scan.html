@@ -61,9 +61,10 @@
 </head>
 <body>
 
-<h1>📚 SCAN Function Example</h1>
+<h1>📚 SCAN / word Function Example</h1>
 
 <div class="comparison">
+  <!-- SAS SCAN -->
   <div class="card sas">
     <h2>SAS SCAN</h2>
     <p><strong>Syntax:</strong></p>
@@ -87,6 +88,7 @@ proc print data=example; run;</pre>
     </div>
   </div>
 
+  <!-- R stringr::word -->
   <div class="card r">
     <h2>R stringr::word</h2>
     <p><strong>Syntax:</strong></p>
@@ -100,7 +102,7 @@ word2 <- word(text, 2)
 word3 <- word(text, 3)
 data.frame(word1, word2, word3)</pre>
 
-    <p><strong>Explanation:</strong> Extracts the nth word from a string. Uses space as default delimiter.</p>
+    <p><strong>Explanation:</strong> Extracts the nth word from a string using space as the default delimiter.</p>
     <div class="output">
       word1 = SAS<br>
       word2 = R<br>
