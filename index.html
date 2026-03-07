@@ -4,7 +4,6 @@
 <title>SAS to R Converter</title>
 
 <style>
-
 body{
 font-family: Arial;
 background:#f4f6f8;
@@ -41,8 +40,25 @@ cursor:pointer;
 button:hover{
 background:#1e40af;
 }
-
 </style>
+
+<script>
+
+function convertCode(){
+
+let sas=document.getElementById("sascode").value;
+
+let r=sas
+.replace(/proc means/gi,"summary()")
+.replace(/data\s+/gi,"<- data.frame(")
+.replace(/run;/gi,")")
+.replace(/proc print/gi,"print");
+
+document.getElementById("rcode").value=r;
+
+}
+
+</script>
 
 </head>
 
@@ -52,13 +68,17 @@ background:#1e40af;
 
 <h1>SAS to R Converter</h1>
 
-<p>Paste your SAS code below</p>
+<p>Paste SAS code</p>
 
-<textarea placeholder="Enter SAS code here"></textarea>
+<textarea id="sascode" placeholder="Enter SAS code"></textarea>
 
 <br>
 
-<button>Convert to R</button>
+<button onclick="convertCode()">Convert to R</button>
+
+<p>Converted R Code</p>
+
+<textarea id="rcode"></textarea>
 
 <p style="margin-top:20px">
 Created by Venkat Sai
