@@ -1,90 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SAS to R Converter</title>
-
-<style>
-body{
-font-family: Arial;
-background:#f4f6f8;
-text-align:center;
-padding:40px;
-}
-
-.container{
-background:white;
-padding:30px;
-border-radius:10px;
-width:60%;
-margin:auto;
-box-shadow:0 0 10px gray;
-}
-
-textarea{
-width:90%;
-height:150px;
-margin:10px;
-padding:10px;
-}
-
-button{
-background:#2563eb;
-color:white;
-padding:10px 20px;
-border:none;
-border-radius:5px;
-font-size:16px;
-cursor:pointer;
-}
-
-button:hover{
-background:#1e40af;
-}
-</style>
-
-<script>
-
-function convertCode(){
-
-let sas=document.getElementById("sascode").value;
-
-let r=sas
-.replace(/proc means/gi,"summary()")
-.replace(/data\s+/gi,"<- data.frame(")
-.replace(/run;/gi,")")
-.replace(/proc print/gi,"print");
-
-document.getElementById("rcode").value=r;
-
-}
-
-</script>
-
+  <title>SAS ↔ R Conversion Hub</title>
 </head>
-
 <body>
+  <h1>SAS ↔ R Clinical Programming</h1>
+  <p>By Venkat Sai</p>
 
-<div class="container">
+  <h2>Example 1: PROC MEANS vs dplyr</h2>
+  <pre>
+SAS:
+proc means data=adsl;
+class trtp;
+var age;
+run;
+  </pre>
 
-<h1>SAS to R Converter</h1>
-
-<p>Paste SAS code</p>
-
-<textarea id="sascode" placeholder="Enter SAS code"></textarea>
-
-<br>
-
-<button onclick="convertCode()">Convert to R</button>
-
-<p>Converted R Code</p>
-
-<textarea id="rcode"></textarea>
-
-<p style="margin-top:20px">
-Created by Venkat Sai
-</p>
-
-</div>
+  <pre>
+R:
+library(dplyr)
+adsl %>%
+ group_by(trtp) %>%
+ summarise(mean_age=mean(age, na.rm=TRUE))
+  </pre>
 
 </body>
 </html>
