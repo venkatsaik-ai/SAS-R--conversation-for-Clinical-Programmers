@@ -2,38 +2,41 @@ function toggleDarkMode() {
 document.body.classList.toggle("dark");
 }
 
+/* SEARCH FUNCTION */
+
 const search = document.getElementById("search");
 
-if(search){
-search.addEventListener("keyup", function() {
+if (search) {
+search.addEventListener("keyup", function () {
 
 let filter = search.value.toLowerCase();
-let links = document.querySelectorAll(".sidebar ul li");
+let items = document.querySelectorAll(".sidebar ul li");
 
-links.forEach(function(item){
+items.forEach(function (item) {
 
 let text = item.innerText.toLowerCase();
 
-if(text.includes(filter)){
-item.style.display="";
-}
-else{
-item.style.display="none";
+if (text.includes(filter)) {
+item.style.display = "block";
+} else {
+item.style.display = "none";
 }
 
 });
 
 });
 }
+
+/* MENU TOGGLE */
 
 function toggleMenu(menuId){
 
 let menu = document.getElementById(menuId);
 
-if(menu.style.display === "none"){
-menu.style.display = "block";
-}else{
+if(menu.style.display === "block"){
 menu.style.display = "none";
+}else{
+menu.style.display = "block";
 }
 
 }
