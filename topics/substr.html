@@ -1,49 +1,309 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>SAS and R Function Documentation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUBSTR Function - SAS to R</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .topic-container { padding: 20px; max-width: 1200px; margin: 0 auto; }
+    .section { margin: 30px 0; }
+    .section h3 { border-bottom: 3px solid #007bff; padding-bottom: 10px; margin-top: 20px; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+    .sas-block, .r-block { background: #f8f9fa; padding: 15px; border-radius: 5px; }
+    .sas-block { border-left: 5px solid #1f77b4; }
+    .r-block { border-left: 5px solid #ff7f0e; }
+    .sas-block h4 { color: #1f77b4; margin-top: 0; }
+    .r-block h4 { color: #ff7f0e; margin-top: 0; }
+    code { background: #e9ecef; padding: 3px 8px; border-radius: 3px; font-family: 'Courier New'; font-weight: bold; }
+    pre { background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; border-left: 3px solid #ddd; }
+    .example-output { background: #e8f5e9; padding: 10px; border-radius: 4px; margin-top: 10px; font-weight: bold; color: #2e7d32; }
+    .warning { background: #fff3cd; padding: 12px; border-radius: 4px; margin: 15px 0; border-left: 4px solid #ffc107; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    table th, table td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+    table th { background: #f0f0f0; font-weight: bold; }
+    table tr:hover { background: #f9f9f9; }
+    .back-link { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
+    .back-link a { color: #007bff; text-decoration: none; font-weight: bold; }
+    .back-link a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-    <h1>Function Documentation</h1>
-    <h2>Function Name</h2>
-    <p>Description of what the function does.</p>
+
+<div class="sidebar">
+  <h2>SAS → R Guide</h2>
+  <input type="text" id="search" placeholder="Search topic...">
+  <ul>
+    <li><a href="../index.html">← Back to Main Menu</a></li>
+  </ul>
+</div>
+
+<div class="container topic-container">
+  <h1>📚 SUBSTR Function</h1>
+
+  <!-- SYNTAX SECTION -->
+  <div class="section">
+    <h3>📋 Function Syntax</h3>
+    <div class="comparison">
+      <div class="sas-block">
+        <h4>SAS SUBSTR</h4>
+        <pre>SUBSTR(source, start [, length])
+SUBSTR(source, start, length) = value  /* For assignment */</pre>
+        <p><strong>Parameters:</strong></p>
+        <ul>
+          <li><code>source</code> - Character variable/string to extract from</li>
+          <li><code>start</code> - Starting position (1-indexed)</li>
+          <li><code>length</code> - Number of characters to extract (optional)</li>
+        </ul>
+        <p><strong>Returns:</strong> Character substring</p>
+      </div>
+      <div class="r-block">
+        <h4>R substr</h4>
+        <pre>substr(x, start, stop)
+substr(x, start, stop) <- value  /* For assignment */</pre>
+        <p><strong>Parameters:</strong></p>
+        <ul>
+          <li><code>x</code> - Character string/vector to extract from</li>
+          <li><code>start</code> - Starting position (1-indexed)</li>
+          <li><code>stop</code> - Ending position (inclusive, 1-indexed)</li>
+        </ul>
+        <p><strong>Returns:</strong> Character substring/vector</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLANATION SECTION -->
+  <div class="section">
+    <h3>📖 Detailed Explanation</h3>
+    <p>The <code>SUBSTR</code>/<code>substr</code> function extracts a portion of a character string based on starting position. This is one of the most commonly used functions in clinical programming for parsing identifiers, dates, and coded values.</p>
     
-    <h3>Syntax</h3>
-    <pre>
-        SAS: 
-        <code>SAS_Syntax_Here</code>
-        
-        R: 
-        <code>R_Syntax_Here</code>
-    </pre>
+    <div class="warning">
+      <strong>⚠️ Critical Difference:</strong>
+      <ul>
+        <li><strong>SAS:</strong> Uses <code>length</code> parameter (number of characters to extract FROM the start position)</li>
+        <li><strong>R:</strong> Uses <code>stop</code> parameter (ending position, not length)</li>
+        <li><strong>Conversion Formula:</strong> R_stop = SAS_start + SAS_length - 1</li>
+      </ul>
+    </div>
 
-    <h3>Explanation</h3>
-    <p>This section explains the function in detail, providing insight into its purpose and usage.</p>
+    <p><strong>✅ Similarities:</strong></p>
+    <ul>
+      <li>Both use <strong>1-based indexing</strong> (first character is at position 1, not 0)</li>
+      <li>Both extract substrings from a specified position</li>
+      <li>Both return character results</li>
+      <li>Both support assignment/replacement operations</li>
+      <li>No external libraries required in either language</li>
+    </ul>
 
-    <h3>Examples</h3>
-    <h4>SAS Example</h4>
-    <pre>
-        <code>
-        /* SAS code example here */
-        </code>
-    </pre>
+    <p><strong>❌ Differences:</strong></p>
+    <ul>
+      <li>SAS uses length-based extraction; R uses position-based extraction</li>
+      <li>R is vectorized (works on all elements of a vector at once)</li>
+      <li>SAS operates primarily on single values in DATA steps</li>
+    </ul>
+  </div>
 
-    <h4>R Example</h4>
-    <pre>
-        <code>
-        # R code example here
-        </code>
-    </pre>
+  <!-- EXAMPLES SECTION -->
+  <div class="section">
+    <h3>💡 Code Examples & Outputs</h3>
+    
+    <div class="comparison">
+      <div class="sas-block">
+        <h4>SAS Example 1: Basic Extraction</h4>
+        <pre>data example;
+  string = "HelloWorld";
+  substring = substr(string, 1, 5);
+  put substring;
+run;</pre>
+        <div class="example-output">Output: Hello</div>
 
-    <h3>Side-by-Side Behavior</h3>
-    <table border="1">
-        <tr>
-            <th>SAS Output</th>
-            <th>R Output</th>
-        </tr>
-        <tr>
-            <td>SAS_output_here</td>
-            <td>R_output_here</td>
-        </tr>
+        <h4>SAS Example 2: Extract Without Length</h4>
+        <pre>data example;
+  string = "HelloWorld";
+  substring = substr(string, 7);
+  put substring;
+run;</pre>
+        <div class="example-output">Output: World</div>
+
+        <h4>SAS Example 3: Extract Middle Portion</h4>
+        <pre>data example;
+  protocol = "STUDY2024-001";
+  year = substr(protocol, 6, 4);
+  site = substr(protocol, 11, 3);
+  put year= site=;
+run;</pre>
+        <div class="example-output">Output: year=2024 site=001</div>
+
+        <h4>SAS Example 4: Assignment/Replacement</h4>
+        <pre>data example;
+  string = "HelloWorld";
+  substr(string, 1, 5) = "Hi   ";
+  put string;
+run;</pre>
+        <div class="example-output">Output: Hi   World</div>
+      </div>
+
+      <div class="r-block">
+        <h4>R Example 1: Basic Extraction</h4>
+        <pre>string <- "HelloWorld"
+substring <- substr(string, 1, 5)
+print(substring)</pre>
+        <div class="example-output">Output: "Hello"</div>
+
+        <h4>R Example 2: Extract From Position 7 to End</h4>
+        <pre>string <- "HelloWorld"
+substring <- substr(string, 7, nchar(string))
+print(substring)</pre>
+        <div class="example-output">Output: "World"</div>
+
+        <h4>R Example 3: Extract Middle Portions (Vectorized)</h4>
+        <pre>protocol <- c("STUDY2024-001", "STUDY2024-002")
+year <- substr(protocol, 6, 9)
+site <- substr(protocol, 11, 13)
+print(data.frame(year, site))</pre>
+        <div class="example-output">Output: 
+year    site
+2024    001
+2024    002</div>
+
+        <h4>R Example 4: Assignment/Replacement (Vectorized)</h4>
+        <pre>string <- c("HelloWorld", "GoodbyeWorld")
+substr(string, 1, 5) <- "Hi   "
+print(string)</pre>
+        <div class="example-output">Output: "Hi   World"  "Hi   byeWorld"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKING BEHAVIOR SECTION -->
+  <div class="section">
+    <h3>⚙️ Working Behavior Comparison</h3>
+    <table>
+      <tr>
+        <th>Aspect</th>
+        <th>SAS</th>
+        <th>R</th>
+      </tr>
+      <tr>
+        <td><strong>Indexing</strong></td>
+        <td>1-based (first character = position 1)</td>
+        <td>1-based (first character = position 1)</td>
+      </tr>
+      <tr>
+        <td><strong>Position Parameters</strong></td>
+        <td>start, length (number of chars)</td>
+        <td>start, stop (ending position)</td>
+      </tr>
+      <tr>
+        <td><strong>Missing End Position</strong></td>
+        <td>Extracts to end of string automatically</td>
+        <td>Must specify or use nchar()</td>
+      </tr>
+      <tr>
+        <td><strong>Vector Operations</strong></td>
+        <td>Works on single values in DATA steps</td>
+        <td>Fully vectorized - processes all elements</td>
+      </tr>
+      <tr>
+        <td><strong>Assignment (Replacement)</strong></td>
+        <td>Direct: substr(x,1,5)="new"</td>
+        <td>Using <-: substr(x,1,5) <- "new"</td>
+      </tr>
+      <tr>
+        <td><strong>Out of Bounds</strong></td>
+        <td>Returns partial string or empty</td>
+        <td>Returns partial string or empty string</td>
+      </tr>
+      <tr>
+        <td><strong>Data Types Supported</strong></td>
+        <td>Character variables only</td>
+        <td>Character vectors/strings</td>
+      </tr>
+      <tr>
+        <td><strong>Library Required</strong></td>
+        <td>None (base SAS)</td>
+        <td>None (base R)</td>
+      </tr>
     </table>
+  </div>
+
+  <!-- CONVERSION GUIDE -->
+  <div class="section">
+    <h3>🔄 SAS to R Conversion Guide</h3>
+    <p><strong>Key Formula for Conversion:</strong></p>
+    <pre>SAS:  substr(string, start, length)
+R:    substr(string, start, start + length - 1)</pre>
+
+    <p><strong>Conversion Examples:</strong></p>
+    <table>
+      <tr>
+        <th>SAS Code</th>
+        <th>R Equivalent</th>
+        <th>Explanation</th>
+      </tr>
+      <tr>
+        <td><code>substr(x, 1, 3)</code></td>
+        <td><code>substr(x, 1, 3)</code></td>
+        <td>start=1, length=3 → start=1, stop=1+3-1=3</td>
+      </tr>
+      <tr>
+        <td><code>substr(x, 5, 4)</code></td>
+        <td><code>substr(x, 5, 8)</code></td>
+        <td>start=5, length=4 → start=5, stop=5+4-1=8</td>
+      </tr>
+      <tr>
+        <td><code>substr(x, 10)</code></td>
+        <td><code>substr(x, 10, nchar(x))</code></td>
+        <td>Extract from position 10 to end</td>
+      </tr>
+      <tr>
+        <td><code>substr(date,1,4)</code></td>
+        <td><code>substr(date, 1, 4)</code></td>
+        <td>Extract year from YYYYMMDD format</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- CLINICAL USE CASES -->
+  <div class="section">
+    <h3>🎯 Clinical Programming Use Cases</h3>
+    <ul>
+      <li><strong>Extract Patient ID Prefix:</strong> 
+        <code>site_code <- substr(subject_id, 1, 2)</code> (extracts first 2 characters)</li>
+      
+      <li><strong>Extract Date Components:</strong> 
+        <code>year <- substr(visit_date, 1, 4)</code> (from YYYY-MM-DD format)</li>
+      
+      <li><strong>Parse Protocol Number:</strong> 
+        <code>protocol_year <- substr(protocol_id, 1, 4)</code> (e.g., "2024" from "2024-ABC-001")</li>
+      
+      <li><strong>Extract Visit Code:</strong> 
+        <code>visit <- substr(record_id, 6, 2)</code> (specific positions in ID)</li>
+      
+      <li><strong>Extract AE Severity Code:</strong> 
+        <code>severity <- substr(ae_code, 5, 1)</code> (last digit indicates severity)</li>
+      
+      <li><strong>Parse Lab Test Codes:</strong> 
+        <code>lab_domain <- substr(test_code, 1, 3)</code> (chemistry, hematology, etc.)</li>
+    </ul>
+  </div>
+
+  <!-- PERFORMANCE NOTES -->
+  <div class="section">
+    <h3>⚡ Performance Notes</h3>
+    <ul>
+      <li><strong>SAS:</strong> Very efficient for character manipulation; use in DATA steps or in PROC SQL</li>
+      <li><strong>R:</strong> Also efficient; vectorization makes it faster for multiple strings</li>
+      <li><strong>Alternative in R:</strong> <code>stringr::str_sub()</code> from the stringr package offers similar functionality</li>
+      <li><strong>Consider:</strong> For clinical data with thousands of records, R vectorization often outperforms SAS</li>
+    </ul>
+  </div>
+
+  <div class="back-link">
+    <a href="../index.html">← Back to Main Menu</a>
+  </div>
+</div>
+
+<script src="../script.js"></script>
 </body>
 </html>
