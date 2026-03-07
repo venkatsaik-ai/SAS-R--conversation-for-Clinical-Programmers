@@ -1,76 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to SAS-R Tool Kit</title>
+
+  <!-- LINK TO YOUR EXTERNAL CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
 <div class="sidebar">
 
-<h2>SAS → R Guide</h2>
+  <h2>SAS → R Guide</h2>
 
-<input type="text" id="search" placeholder="Search topic...">
+  <input type="text" id="search" placeholder="Search topic...">
 
-<ul>
+  <ul>
+    <!-- Character Functions -->
+    <li>
+      <button onclick="toggleMenu('charMenu')" class="menu-btn">Character Functions</button>
+      <ul id="charMenu" style="display:none;">
+        <li><a href="topics/substr.html">SUBSTR</a></li>
+        <li><a href="topics/scan.html">SCAN</a></li>
+        <li><a href="topics/scan.html">Compress</a></li>
+        <li><a href="topics/scan.html">Cat</a></li>
+        <li><a href="topics/scan.html">Catx</a></li>
+        <li><a href="topics/scan.html">Strip</a></li>
+        <li><a href="topics/scan.html">Left</a></li>
+        <li><a href="topics/scan.html">Right</a></li>
+        <li><a href="topics/scan.html">Upcase</a></li>
+        <li><a href="topics/scan.html">Lowcase</a></li>
+        <li><a href="topics/scan.html">Propcase</a></li>
+        <li><a href="topics/scan.html">Length</a></li>
+        <li><a href="topics/scan.html">LengthC</a></li>
+        <li><a href="topics/scan.html">Index</a></li>
+        <li><a href="topics/scan.html">Find</a></li>
+        <li><a href="topics/scan.html">Tranwrd</a></li>
+        <li><a href="topics/scan.html">Reverse</a></li>
+        <li><a href="topics/scan.html">Put</a></li>
+        <li><a href="topics/scan.html">Input</a></li>
+      </ul>
+    </li>
 
-<li>
-<button onclick="toggleMenu('charMenu')" class="menu-btn">Character Functions</button>
-Character Functions
-</button>
-
-<ul id="charMenu" style="display:none;">
-<li><a href="topics/substr.html">SUBSTR</a></li>
-<li><a href="topics/scan.html">SCAN</a></li>
-<li><a href="topics/scan.html">Compress</a></li>
-<li><a href="topics/scan.html">Cat</a></li>
-<li><a href="topics/scan.html">Catx</a></li>
-<li><a href="topics/scan.html">Strip</a></li>
-<li><a href="topics/scan.html">Left</a></li>
-<li><a href="topics/scan.html">Right</a></li>
-<li><a href="topics/scan.html">Upcase</a></li>
-<li><a href="topics/scan.html">Lowcase</a></li>
-<li><a href="topics/scan.html">Propcase</a></li>
-<li><a href="topics/scan.html">Length</a></li>
-<li><a href="topics/scan.html">LengthC</a></li>
-<li><a href="topics/scan.html">Index</a></li>
-<li><a href="topics/scan.html">Find</a></li>
-<li><a href="topics/scan.html">Tranwrd</a></li>
-<li><a href="topics/scan.html">Reverse</a></li>
-<li><a href="topics/scan.html">Put</a></li>
-<li><a href="topics/scan.html">Input</a></li>
-</ul>
-</li>
-
-<li>
-<button onclick="toggleMenu('numMenu')" class="menu-btn">Numeric Functions</button>
-Numeric Functions
-</button>
-
-<ul id="numMenu" style="display:none;">
-<li><a href="topics/scan.html">INT</a></li>
-<li><a href="topics/scan.html">Ceil</a></li>
-<li><a href="topics/scan.html">Floor</a></li>
-<li><a href="topics/scan.html">Round</a></li>
-<li><a href="topics/scan.html">Mean</a></li>
-<li><a href="topics/scan.html">Sum</a></li>
-<li><a href="topics/scan.html">Nmiss</a></li>
-<li><a href="topics/scan.html">Min</a></li>
-<li><a href="topics/scan.html">Max</a></li>
-<li><a href="topics/scan.html">Std</a></li>
-<li><a href="topics/scan.html">Intck</a></li>
-<li><a href="topics/scan.html">Intnx</a></li>
-<li><a href="topics/scan.html">Mdy</a></li>
-</ul>
-</li>
-
-</ul>
+    <!-- Numeric Functions -->
+    <li>
+      <button onclick="toggleMenu('numMenu')" class="menu-btn">Numeric Functions</button>
+      <ul id="numMenu" style="display:none;">
+        <li><a href="topics/scan.html">INT</a></li>
+        <li><a href="topics/scan.html">Ceil</a></li>
+        <li><a href="topics/scan.html">Floor</a></li>
+        <li><a href="topics/scan.html">Round</a></li>
+        <li><a href="topics/scan.html">Mean</a></li>
+        <li><a href="topics/scan.html">Sum</a></li>
+        <li><a href="topics/scan.html">Nmiss</a></li>
+        <li><a href="topics/scan.html">Min</a></li>
+        <li><a href="topics/scan.html">Max</a></li>
+        <li><a href="topics/scan.html">Std</a></li>
+        <li><a href="topics/scan.html">Intck</a></li>
+        <li><a href="topics/scan.html">Intnx</a></li>
+        <li><a href="topics/scan.html">Mdy</a></li>
+      </ul>
+    </li>
+  </ul>
 
 </div>
 
 <!-- MAIN CONTENT AREA -->
-
 <div class="container">
 
-<h1>Welcome to SAS-R Tool Kit</h1>
+  <h1>Welcome to SAS-R Tool Kit</h1>
 
-<p>
-This toolkit helps clinical programmers easily translate SAS code into R.
-Select a function from the sidebar to see examples and explanations.
-</p>
+  <p>
+    This toolkit helps clinical programmers easily translate SAS code into R.
+    Select a function from the sidebar to see examples and explanations.
+  </p>
 
 </div>
 
+<!-- LINK TO YOUR JS -->
 <script src="script.js"></script>
+
+</body>
+</html>
