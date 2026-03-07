@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAS-R Scan Function Example</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  button:hover {
+    background-color: #3b82f6;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .card {
+    flex: 1 1 45%;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9fafb;
+  }
+  h2 {
+    color: #1e40af;
+  }
+  pre {
+    background-color: #e5e7eb;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #f3f4f6;
+  }
+</style>
+</head>
+<body>
+
+<h1>SAS & R: SCAN Function Example</h1>
+<button onclick="showScanExample()">Show SCAN Example</button>
+
+<div id="exampleContainer"></div>
+
+<script>
+function showScanExample() {
+  const container = document.getElementById('exampleContainer');
+
+  container.innerHTML = `
+    <div class="container">
+      <!-- SAS Card -->
+      <div class="card">
+        <h2>SAS SCAN Function</h2>
+        <p><strong>Syntax:</strong></p>
+        <pre>SCAN(string, n, &lt;delimiters&gt;)</pre>
+
+        <p><strong>Example:</strong></p>
+        <pre>
+data example_sas;
+    input text $50.;
+    datalines;
+SAS R programming language
+;
+
+word1 = scan(text, 1);
+word2 = scan(text, 2);
+word3 = scan(text, 3);
+run;
+
+proc print data=example_sas; run;
+        </pre>
+
+        <p><strong>Explanation:</strong> Extract nth word from text (default delimiter is space).</p>
+
+        <p><strong>Output:</strong></p>
+        <table>
+          <tr><th>text</th><th>word1</th><th>word2</th><th>word3</th></tr>
+          <tr><td>SAS R programming language</td><td>SAS</td><td>R</td><td>programming</td></tr>
+        </table>
+      </div>
+
+      <!-- R Card -->
+      <div class="card">
+        <h2>R SCAN Function (stringr::word)</h2>
+        <p><strong>Library:</strong> <code>stringr</code></p>
+
+        <p><strong>Example:</strong></p>
+        <pre>
+library(stringr)
+
+text <- "SAS R programming language"
+
+word1 <- word(text, 1)
+word2 <- word(text, 2)
+word3 <- word(text, 3)
+
+data.frame(word1, word2, word3)
+        </pre>
+
+        <p><strong>Explanation:</strong> Extract nth word using <code>word()</code> (similar to SAS SCAN).</p>
+
+        <p><strong>Output:</strong></p>
+        <table>
+          <tr><th>word1</th><th>word2</th><th>word3</th></tr>
+          <tr><td>SAS</td><td>R</td><td>programming</td></tr>
+        </table>
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
