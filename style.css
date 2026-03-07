@@ -1,0 +1,46 @@
+body{
+font-family: Arial;
+margin:0;
+display:flex;
+}
+
+.sidebar{
+width:250px;
+background:#2c3e50;
+color:white;
+height:100vh;
+padding:20px;
+}
+
+.sidebar ul{
+list-style:none;
+padding:0;
+}
+
+.sidebar ul li{
+margin:10px 0;
+}
+
+.sidebar a{
+color:white;
+text-decoration:none;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+padding:20px;
+}
+
+pre{
+background:#1e1e1e;
+color:#00ff9c;
+padding:20px;
+border-radius:8px;
+}
+
+.dark{
+background:#121212;
+color:white;
+}
