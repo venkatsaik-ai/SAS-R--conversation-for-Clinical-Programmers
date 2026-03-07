@@ -1,120 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>SAS to R Examples</title>
+<div class="sidebar">
 
-<style>
-body{
-font-family: Arial;
-background:#f5f5f5;
-margin:40px;
-}
+<h2>SAS → R Guide</h2>
 
-.section{
-margin-bottom:40px;
-}
+<input type="text" id="search" placeholder="Search topic...">
 
-.container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
+<ul>
+<li><a href="topics/character-functions.html">Character Functions</a></li>
+<li><a href="topics/numeric-functions.html">Numeric Functions</a></li>
+<li><a href="topics/if-conditions.html">IF THEN Logic</a></li>
+<li><a href="topics/proc-freq.html">PROC FREQ</a></li>
+<li><a href="topics/proc-means.html">PROC MEANS</a></li>
+<li><a href="topics/proc-transpose.html">PROC TRANSPOSE</a></li>
+<li><a href="topics/proc-contents.html">PROC CONTENTS</a></li>
+</ul>
 
-.codebox{
-background:#1e1e1e;
-color:#00ff9c;
-padding:20px;
-border-radius:8px;
-font-family:monospace;
-}
-
-h2{
-color:#333;
-}
-
-.label{
-font-weight:bold;
-margin-bottom:10px;
-}
-</style>
-
-</head>
-
-<body>
-
-<h1>SAS to R Programming Examples</h1>
-
-<!-- Character Functions -->
-<div class="section">
-
-<h2>Character Functions</h2>
-
-<div class="container">
-
-<div>
-<div class="label">SAS Code</div>
-
-<div class="codebox">
-data example;
-name="Venkat Sai";
-upper_name = upcase(name);
-length = length(name);
-run;
-</div>
+<button onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
 </div>
-
-<div>
-<div class="label">R Code</div>
-
-<div class="codebox">
-name <- "Venkat Sai"
-upper_name <- toupper(name)
-length <- nchar(name)
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- IF THEN CONDITION -->
-<div class="section">
-
-<h2>IF THEN Condition</h2>
-
-<div class="container">
-
-<div>
-<div class="label">SAS Code</div>
-
-<div class="codebox">
-data test;
-set sashelp.class;
-
-if age > 13 then group="Teen";
-else group="Child";
-
-run;
-</div>
-</div>
-
-<div>
-<div class="label">R Code</div>
-
-<div class="codebox">
-data$group <- ifelse(
-data$age > 13,
-"Teen",
-"Child"
-)
-</div>
-
-</div>
-
-</div>
-</div>
-
-</body>
-</html>
