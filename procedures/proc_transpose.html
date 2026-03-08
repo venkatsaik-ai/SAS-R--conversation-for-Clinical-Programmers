@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PROC TRANSPOSE - SAS to R Guide</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+.header{
+background:#020617;
+padding:25px;
+text-align:center;
+}
+
+.section{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:20px;
+color:#7dd3fc;
+}
+
+.comparison{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+flex:1 1 45%;
+background:#020617;
+padding:25px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.sas{
+border-left:6px solid #38bdf8;
+}
+
+.r{
+border-left:6px solid #f97316;
+}
+
+pre{
+background:#020617;
+padding:15px;
+border-radius:6px;
+border:1px solid #1e293b;
+overflow:auto;
+}
+
+.code-container{
+position:relative;
+}
+
+.copy-btn{
+position:absolute;
+top:5px;
+right:5px;
+background:#1e293b;
+border:none;
+padding:5px 10px;
+color:white;
+cursor:pointer;
+}
+
+.output{
+background:#14532d;
+padding:10px;
+margin-top:10px;
+border-radius:5px;
+}
+
+@media(max-width:800px){
+.comparison{
+flex-direction:column;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>PROC TRANSPOSE – SAS vs R</h1>
+</div>
+
+<!-- BASIC TRANSPOSE -->
+
+<div class="section">
+
+<div class="section-title">Basic Transpose</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC TRANSPOSE</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
+input id math science;
+datalines;
+1 80 85
+2 75 90
+3 88 92
+;
+run;
+
+proc transpose data=example
+out=transposed;
+var math science;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+Output Dataset
+
+NAME    COL1  COL2  COL3<br>
+math     80    75    88<br>
+science  85    90    92
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R transpose using t()</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+example <- data.frame(
+id=c(1,2,3),
+math=c(80,75,88),
+science=c(85,90,92)
+)
+
+t(example[,2:3])
+</pre>
+
+</div>
+
+<div class="output">
+        [,1] [,2] [,3]<br>
+math     80   75   88<br>
+science  85   90   92
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- TRANSPOSE WITH BY AND ID -->
+
+<div class="section">
+
+<div class="section-title">Transpose using BY and ID</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC TRANSPOSE with BY and ID</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
+input id subject $ score;
+datalines;
+1 Math 80
+1 Science 85
+2 Math 75
+2 Science 90
+;
+run;
+
+proc sort data=example;
+by id;
+run;
+
+proc transpose data=example
+out=transposed;
+by id;
+id subject;
+var score;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+Output Dataset
+
+ID   Math   Science<br>
+1     80      85<br>
+2     75      90
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R pivot_wider()</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+library(tidyr)
+
+example <- data.frame(
+id=c(1,1,2,2),
+subject=c("Math","Science","Math","Science"),
+score=c(80,85,75,90)
+)
+
+pivot_wider(example,
+names_from=subject,
+values_from=score)
+</pre>
+
+</div>
+
+<div class="output">
+id   Math  Science<br>
+1     80     85<br>
+2     75     90
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function copyCode(button){
+
+const code = button.nextElementSibling.innerText;
+
+navigator.clipboard.writeText(code);
+
+button.innerText="Copied";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
