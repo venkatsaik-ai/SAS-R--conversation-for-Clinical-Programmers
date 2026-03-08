@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRIP Function - SAS to R (Dark Theme)</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background-color: #121212; 
+      color: #e0e0e0; 
+    }
+    h1 { color: #90caf9; }
+
+    .comparison { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 20px; 
+      margin-top: 20px; 
+    }
+    .card { 
+      flex: 1 1 45%; 
+      background: #1e1e1e; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .sas { border-left: 5px solid #1f77b4; }
+    .r { border-left: 5px solid #ff7f0e; }
+
+    .code-container {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      background-color: #00bcd4;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #121212;
+      transition: background 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #0097a7;
+    }
+
+    pre { 
+      background: #2c2c2c; 
+      padding: 15px; 
+      border-radius: 5px; 
+      overflow-x: auto; 
+      color: #f5f5f5;
+    }
+
+    .output, .library-box { 
+      background: #2e7d32; 
+      padding: 10px; 
+      border-radius: 5px; 
+      margin-top: 10px; 
+      font-weight: bold; 
+      color: #e0e0e0; 
+    }
+
+    h2 { margin-top: 0; }
+    .sas h2 { color: #1f77b4; }
+    .r h2 { color: #ff7f0e; }
+
+    a { color: #90caf9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @media (max-width: 800px) {
+      .comparison { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>📚 STRIP Function Example</h1>
+
+<div class="comparison">
+  <!-- SAS STRIP -->
+  <div class="card sas">
+    <h2>SAS STRIP</h2>
+    <p><strong>Syntax:</strong></p>
+    <pre>STRIP(string)</pre>
+
+    <p><strong>Example:</strong></p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+      <pre>data example;
+  text = "  SAS Programming  ";
+  stripped = strip(text);
+run;
+
+proc print data=example; run;</pre>
+    </div>
+
+    <p><strong>Explanation:</strong> Removes leading and trailing blanks from a string.</p>
+    <div class="output">
+      text = "  SAS Programming  "<br>
+      stripped = "SAS Programming"
+    </div>
+  </div>
+
+  <!-- R stringr::str_trim -->
+  <div class="card r">
+    <h2>R stringr::str_trim</h2>
+    <p><strong>Syntax:</strong></p>
+    <pre>str_trim(string, side = "both")</pre>
+
+    <p><strong>Example:</strong></p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+      <pre>library(stringr)
+text <- "  SAS Programming  "
+stripped <- str_trim(text)
+stripped</pre>
+    </div>
+
+    <p><strong>Explanation:</strong> Removes leading and trailing spaces. `side = "both"` removes from both ends.</p>
+
+    <div class="library-box">
+      R Library: <code>stringr</code> must be installed using:<br>
+      <pre>install.packages("stringr")</pre>
+    </div>
+
+    <div class="output">
+      stripped = "SAS Programming"
+    </div>
+  </div>
+</div>
+
+<script>
+function copyCode(button) {
+  const code = button.nextElementSibling.innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    button.innerText = '✅ Copied!';
+    setTimeout(() => { button.innerText = '📋 Copy'; }, 2000);
+  }).catch(err => console.error('Failed to copy: ', err));
+}
+</script>
+
+</body>
+</html>
