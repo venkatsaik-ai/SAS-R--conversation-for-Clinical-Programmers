@@ -24,6 +24,9 @@ h2 { margin-top: 0; }
 </head>
 <body>
 
+<!-- ...same head as before... -->
+<body>
+
 <h1>📚 UPCASE Function Example</h1>
 
 <div class="comparison">
@@ -45,6 +48,14 @@ proc print data=example; run;</pre>
 
   <div class="card r">
     <h2>R toupper</h2>
+
+    <!-- Library box added BEFORE example -->
+    <div class="library-box">
+      R Base Function: <code>toupper()</code> does not require extra package.
+      <br>If you plan to use dplyr functions later, install with:
+      <pre>install.packages("dplyr")</pre>
+    </div>
+
     <p><strong>Syntax:</strong> toupper(string)</p>
     <div class="code-container">
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -66,3 +77,5 @@ function copyCode(button) {
 
 </body>
 </html>
+
+
