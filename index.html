@@ -1,86 +1,217 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to SAS-R Tool Kit</title>
-
-  <!-- LINK TO YOUR EXTERNAL CSS -->
   <link rel="stylesheet" href="style.css">
-</head>
+  <style>
+    /* DARK THEME FOR ENTIRE PAGE */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #f5f5f5;
+    }
 
+    /* LANDING SECTION */
+    .landing {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background-color: #1e1e1e;
+      padding: 0 20px;
+    }
+
+    .landing h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #00bcd4;
+    }
+
+    .landing p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 40px;
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+
+    .explore-btn {
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      background-color: #00bcd4;
+      border: none;
+      border-radius: 8px;
+      color: #121212;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .explore-btn:hover {
+      background-color: #0097a7;
+      transform: scale(1.05);
+    }
+
+    /* MAIN CONTENT (SIDEBAR + CONTAINER) */
+    .sidebar {
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: #1a1a1a;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      color: #00bcd4;
+      margin-bottom: 15px;
+    }
+
+    .sidebar input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a, .menu-btn {
+      color: #f5f5f5;
+      text-decoration: none;
+      display: block;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover, .menu-btn:hover {
+      background-color: #333;
+    }
+
+    .container {
+      margin-left: 270px;
+      padding: 50px 20px;
+      max-width: 900px;
+    }
+
+    .container h1 {
+      color: #00bcd4;
+      margin-bottom: 20px;
+    }
+
+    .container p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Hide main content initially */
+    .main-content {
+      display: none;
+    }
+  </style>
+</head>
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-
-  <h2>SAS → R Guide</h2>
-
-  <input type="text" id="search" placeholder="Search topic...">
-
-  <ul>
-    <!-- Character Functions -->
-    <li>
-      <button onclick="toggleMenu('charMenu')" class="menu-btn">Character Functions</button>
-      <ul id="charMenu" style="display:none;">
-        <li><a href="topics/substr.html">SUBSTR</a></li>
-        <li><a href="topics/scan.html">SCAN</a></li>
-        <li><a href="topics/scan.html">Compress</a></li>
-        <li><a href="topics/scan.html">Cat</a></li>
-        <li><a href="topics/scan.html">Catx</a></li>
-        <li><a href="topics/scan.html">Strip</a></li>
-        <li><a href="topics/scan.html">Left</a></li>
-        <li><a href="topics/scan.html">Right</a></li>
-        <li><a href="topics/scan.html">Upcase</a></li>
-        <li><a href="topics/scan.html">Lowcase</a></li>
-        <li><a href="topics/scan.html">Propcase</a></li>
-        <li><a href="topics/scan.html">Length</a></li>
-        <li><a href="topics/scan.html">LengthC</a></li>
-        <li><a href="topics/scan.html">Index</a></li>
-        <li><a href="topics/scan.html">Find</a></li>
-        <li><a href="topics/scan.html">Tranwrd</a></li>
-        <li><a href="topics/scan.html">Reverse</a></li>
-        <li><a href="topics/scan.html">Put</a></li>
-        <li><a href="topics/scan.html">Input</a></li>
-      </ul>
-    </li>
-
-    <!-- Numeric Functions -->
-    <li>
-      <button onclick="toggleMenu('numMenu')" class="menu-btn">Numeric Functions</button>
-      <ul id="numMenu" style="display:none;">
-        <li><a href="topics/scan.html">INT</a></li>
-        <li><a href="topics/scan.html">Ceil</a></li>
-        <li><a href="topics/scan.html">Floor</a></li>
-        <li><a href="topics/scan.html">Round</a></li>
-        <li><a href="topics/scan.html">Mean</a></li>
-        <li><a href="topics/scan.html">Sum</a></li>
-        <li><a href="topics/scan.html">Nmiss</a></li>
-        <li><a href="topics/scan.html">Min</a></li>
-        <li><a href="topics/scan.html">Max</a></li>
-        <li><a href="topics/scan.html">Std</a></li>
-        <li><a href="topics/scan.html">Intck</a></li>
-        <li><a href="topics/scan.html">Intnx</a></li>
-        <li><a href="topics/scan.html">Mdy</a></li>
-      </ul>
-    </li>
-  </ul>
-
-</div>
-
-<!-- MAIN CONTENT AREA -->
-<div class="container">
-
+<!-- LANDING SECTION -->
+<div class="landing" id="landing">
   <h1>Welcome to SAS-R Tool Kit</h1>
-
-  <p>
-    This toolkit helps clinical programmers easily translate SAS code into R.
-    Select a function from the sidebar to see examples and explanations.
-  </p>
-
+  <p>This toolkit helps clinical programmers easily translate SAS code into R. Select a function from the sidebar to see examples and explanations.</p>
+  <a href="#main" class="explore-btn" onclick="showMainContent()">Explore</a>
 </div>
 
-<!-- LINK TO YOUR JS -->
+<!-- MAIN CONTENT -->
+<div id="main" class="main-content">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>SAS → R Guide</h2>
+    <input type="text" id="search" placeholder="Search topic...">
+    <ul>
+      <!-- Character Functions -->
+      <li>
+        <button onclick="toggleMenu('charMenu')" class="menu-btn">Character Functions</button>
+        <ul id="charMenu" style="display:none;">
+          <li><a href="topics/substr.html">SUBSTR</a></li>
+          <li><a href="topics/scan.html">SCAN</a></li>
+          <li><a href="topics/scan.html">Compress</a></li>
+          <li><a href="topics/scan.html">Cat</a></li>
+          <li><a href="topics/scan.html">Catx</a></li>
+          <li><a href="topics/scan.html">Strip</a></li>
+          <li><a href="topics/scan.html">Left</a></li>
+          <li><a href="topics/scan.html">Right</a></li>
+          <li><a href="topics/scan.html">Upcase</a></li>
+          <li><a href="topics/scan.html">Lowcase</a></li>
+          <li><a href="topics/scan.html">Propcase</a></li>
+          <li><a href="topics/scan.html">Length</a></li>
+          <li><a href="topics/scan.html">LengthC</a></li>
+          <li><a href="topics/scan.html">Index</a></li>
+          <li><a href="topics/scan.html">Find</a></li>
+          <li><a href="topics/scan.html">Tranwrd</a></li>
+          <li><a href="topics/scan.html">Reverse</a></li>
+          <li><a href="topics/scan.html">Put</a></li>
+          <li><a href="topics/scan.html">Input</a></li>
+        </ul>
+      </li>
+
+      <!-- Numeric Functions -->
+      <li>
+        <button onclick="toggleMenu('numMenu')" class="menu-btn">Numeric Functions</button>
+        <ul id="numMenu" style="display:none;">
+          <li><a href="topics/scan.html">INT</a></li>
+          <li><a href="topics/scan.html">Ceil</a></li>
+          <li><a href="topics/scan.html">Floor</a></li>
+          <li><a href="topics/scan.html">Round</a></li>
+          <li><a href="topics/scan.html">Mean</a></li>
+          <li><a href="topics/scan.html">Sum</a></li>
+          <li><a href="topics/scan.html">Nmiss</a></li>
+          <li><a href="topics/scan.html">Min</a></li>
+          <li><a href="topics/scan.html">Max</a></li>
+          <li><a href="topics/scan.html">Std</a></li>
+          <li><a href="topics/scan.html">Intck</a></li>
+          <li><a href="topics/scan.html">Intnx</a></li>
+          <li><a href="topics/scan.html">Mdy</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="container">
+    <h1>Welcome to SAS-R Tool Kit</h1>
+    <p>This toolkit helps clinical programmers easily translate SAS code into R. Select a function from the sidebar to see examples and explanations.</p>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script>
+  // Show/hide function menus
+  function toggleMenu(id) {
+    const menu = document.getElementById(id);
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // Show main content when Explore button is clicked
+  function showMainContent() {
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+  }
+</script>
 
 </body>
 </html>
