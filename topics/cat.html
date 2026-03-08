@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAT Function - SAS to R (Deep Blue Dark Theme)</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background-color: #0d1b2a; /* deep blue dark background */
+      color: #e0e0e0; 
+    }
+    h1 { color: #90caf9; }
+
+    .comparison { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 20px; 
+      margin-top: 20px; 
+    }
+    .card { 
+      flex: 1 1 45%; 
+      background: #1b263b; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .sas { border-left: 5px solid #1f77b4; }
+    .r { border-left: 5px solid #ff7f0e; }
+
+    pre { 
+      background: #162447; 
+      padding: 15px; 
+      border-radius: 5px; 
+      overflow-x: auto; 
+      color: #f5f5f5;
+    }
+
+    .output { 
+      background: #1f7a8c; 
+      padding: 10px; 
+      border-radius: 5px; 
+      margin-top: 10px; 
+      font-weight: bold; 
+      color: #e0e0e0; 
+    }
+
+    h2 { margin-top: 0; }
+    .sas h2 { color: #1f77b4; }
+    .r h2 { color: #ff7f0e; }
+
+    a { color: #90caf9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @media (max-width: 800px) {
+      .comparison { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>📚 CAT Function Example</h1>
+
+<div class="comparison">
+  <!-- SAS CAT -->
+  <div class="card sas">
+    <h2>SAS CAT</h2>
+    <p><strong>Syntax:</strong></p>
+    <pre>CAT(argument1, argument2, ...)</pre>
+
+    <p><strong>Example:</strong></p>
+    <pre>data example;
+  text1 = "SAS";
+  text2 = "R";
+  combined = cat(text1, text2);
+run;
+
+proc print data=example; run;</pre>
+
+    <p><strong>Explanation:</strong> Concatenates strings without adding any delimiter. Simply joins the values together.</p>
+    <div class="output">
+      text1 = SAS<br>
+      text2 = R<br>
+      combined = SASR
+    </div>
+  </div>
+
+  <!-- R paste0 -->
+  <div class="card r">
+    <h2>R paste0</h2>
+    <p><strong>Syntax:</strong></p>
+    <pre>paste0(...)</pre>
+
+    <p><strong>Example:</strong></p>
+    <pre>text1 <- "SAS"
+text2 <- "R"
+combined <- paste0(text1, text2)
+data.frame(text1, text2, combined)</pre>
+
+    <p><strong>Explanation:</strong> Joins strings together **without any separator**, equivalent to SAS CAT.</p>
+    <div class="output">
+      text1 = SAS<br>
+      text2 = R<br>
+      combined = SASR
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
