@@ -172,11 +172,15 @@ F = 2
 
 <!-- CROSS TABULATION -->
 
+<!-- CROSS TABULATION -->
+
 <div class="section">
 
 <div class="section-title">Cross Tabulation</div>
 
 <div class="comparison">
+
+<!-- SAS -->
 
 <div class="card sas">
 
@@ -205,7 +209,18 @@ run;
 
 </div>
 
+<div class="output">
+Treatment<br><br>
+
+Gender&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;B<br>
+M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;1<br>
+F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;1
 </div>
+
+</div>
+
+
+<!-- R -->
 
 <div class="card r">
 
@@ -222,6 +237,14 @@ treatment <- c("A","A","B","B","A")
 table(gender, treatment)
 </pre>
 
+</div>
+
+<div class="output">
+treatment<br><br>
+
+gender&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;B<br>
+M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;1<br>
+F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;1
 </div>
 
 </div>
