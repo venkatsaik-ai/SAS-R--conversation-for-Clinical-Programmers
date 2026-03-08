@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROC FREQ - SAS to R Guide</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+.header{
+background:#020617;
+padding:25px;
+text-align:center;
+}
+
+.section{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:20px;
+color:#7dd3fc;
+}
+
+.comparison{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+flex:1 1 45%;
+background:#020617;
+padding:25px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.sas{
+border-left:6px solid #38bdf8;
+}
+
+.r{
+border-left:6px solid #f97316;
+}
+
+pre{
+background:#020617;
+padding:15px;
+border-radius:6px;
+border:1px solid #1e293b;
+overflow:auto;
+}
+
+.code-container{
+position:relative;
+}
+
+.copy-btn{
+position:absolute;
+top:5px;
+right:5px;
+background:#1e293b;
+border:none;
+padding:5px 10px;
+color:white;
+cursor:pointer;
+}
+
+.output{
+background:#14532d;
+padding:10px;
+margin-top:10px;
+border-radius:5px;
+}
+
+@media(max-width:800px){
+.comparison{
+flex-direction:column;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>PROC FREQ – SAS vs R</h1>
+</div>
+
+<!-- SINGLE TABULATION -->
+
+<div class="section">
+
+<div class="section-title">Single Frequency Table</div>
+
+<div class="comparison">
+
+<div class="card sas">
+
+<h2>SAS PROC FREQ</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
+input gender $;
+datalines;
+M
+F
+M
+M
+F
+;
+run;
+
+proc freq data=example;
+tables gender;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+M = 3<br>
+F = 2
+</div>
+
+</div>
+
+<div class="card r">
+
+<h2>R table()</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+gender <- c("M","F","M","M","F")
+
+table(gender)
+</pre>
+
+</div>
+
+<div class="output">
+M = 3<br>
+F = 2
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CROSS TABULATION -->
+
+<div class="section">
+
+<div class="section-title">Cross Tabulation</div>
+
+<div class="comparison">
+
+<div class="card sas">
+
+<h2>SAS Crosstab</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
+input gender $ treatment $;
+datalines;
+M A
+F A
+M B
+F B
+M A
+;
+run;
+
+proc freq data=example;
+tables gender*treatment;
+run;
+</pre>
+
+</div>
+
+</div>
+
+<div class="card r">
+
+<h2>R Crosstab</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+gender <- c("M","F","M","F","M")
+treatment <- c("A","A","B","B","A")
+
+table(gender, treatment)
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function copyCode(button){
+
+const code = button.nextElementSibling.innerText;
+
+navigator.clipboard.writeText(code);
+
+button.innerText="Copied";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
