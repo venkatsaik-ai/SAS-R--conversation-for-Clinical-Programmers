@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PROC SORT - SAS to R Guide</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+.header{
+background:#020617;
+padding:25px;
+text-align:center;
+}
+
+.section{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:20px;
+color:#7dd3fc;
+}
+
+.comparison{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+flex:1 1 45%;
+background:#020617;
+padding:25px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.sas{
+border-left:6px solid #38bdf8;
+}
+
+.r{
+border-left:6px solid #f97316;
+}
+
+pre{
+background:#020617;
+padding:15px;
+border-radius:6px;
+border:1px solid #1e293b;
+overflow:auto;
+}
+
+.code-container{
+position:relative;
+}
+
+.copy-btn{
+position:absolute;
+top:5px;
+right:5px;
+background:#1e293b;
+border:none;
+padding:5px 10px;
+color:white;
+cursor:pointer;
+}
+
+.output{
+background:#14532d;
+padding:10px;
+margin-top:10px;
+border-radius:5px;
+}
+
+@media(max-width:800px){
+.comparison{
+flex-direction:column;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>PROC SORT – SAS vs R</h1>
+</div>
+
+
+<!-- NODUP EXAMPLE -->
+
+<div class="section">
+
+<div class="section-title">PROC SORT with NODUP</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC SORT NODUP</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
+input id age;
+datalines;
+1 25
+2 30
+2 30
+3 28
+3 28
+;
+run;
+
+proc sort data=example nodup;
+by id age;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+Output Dataset
+
+ID   AGE<br>
+1    25<br>
+2    30<br>
+3    28
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R distinct()</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+library(dplyr)
+
+example <- data.frame(
+id=c(1,2,2,3,3),
+age=c(25,30,30,28,28)
+)
+
+distinct(example)
+</pre>
+
+</div>
+
+<div class="output">
+id   age<br>
+1    25<br>
+2    30<br>
+3    28
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- NODUPKEY EXAMPLE -->
+
+<div class="section">
+
+<div class="section-title">PROC SORT with NODUPKEY</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC SORT NODUPKEY</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
+input id age;
+datalines;
+1 25
+2 30
+2 35
+3 28
+3 40
+;
+run;
+
+proc sort data=example nodupkey;
+by id;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+Output Dataset
+
+ID   AGE<br>
+1    25<br>
+2    30<br>
+3    28
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R distinct by column</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+library(dplyr)
+
+example <- data.frame(
+id=c(1,2,2,3,3),
+age=c(25,30,35,28,40)
+)
+
+distinct(example, id, .keep_all=TRUE)
+</pre>
+
+</div>
+
+<div class="output">
+id   age<br>
+1    25<br>
+2    30<br>
+3    28
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function copyCode(button){
+
+const code = button.nextElementSibling.innerText;
+
+navigator.clipboard.writeText(code);
+
+button.innerText="Copied";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
