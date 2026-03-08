@@ -1,41 +1,190 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PROC MEANS - SAS to R (Dark Theme)</title>
+
+<title>SAS → R Guide | PROC MEANS</title>
+
 <style>
-body { font-family: Arial; margin: 20px; background: #121212; color: #e0e0e0; }
-h1 { color: #90caf9; }
-.comparison { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
-.card { flex: 1 1 45%; background: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-.sas { border-left: 5px solid #1f77b4; }
-.r { border-left: 5px solid #ff7f0e; }
-.code-container { position: relative; margin-top: 10px; }
-.copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; font-size: 0.9rem; background-color: #333; border: 1px solid #555; border-radius: 5px; cursor: pointer; color: #e0e0e0; transition: background 0.3s, color 0.3s; }
-.copy-btn:hover { background-color: #555; color: #fff; }
-pre { background: #2c2c2c; padding: 15px; border-radius: 5px; overflow-x: auto; color: #f5f5f5; }
-.output, .library-box { background: #2e7d32; padding: 10px; border-radius: 5px; margin-top: 10px; font-weight: bold; color: #e0e0e0; }
-.library-box { margin-bottom: 20px; }
-h2 { margin-top: 0; }
-.sas h2 { color: #1f77b4; }
-.r h2 { color: #ff7f0e; }
-@media (max-width: 800px) { .comparison { flex-direction: column; } }
+
+body{
+font-family: "Segoe UI", Arial;
+margin:0;
+background:#0f172a;
+color:#e2e8f0;
+line-height:1.6;
+}
+
+/* HEADER */
+
+.header{
+background:#020617;
+padding:25px;
+text-align:center;
+border-bottom:1px solid #1e293b;
+}
+
+.header h1{
+margin:0;
+color:#38bdf8;
+font-size:28px;
+}
+
+/* SECTION */
+
+.section{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:25px;
+color:#7dd3fc;
+}
+
+/* CARD LAYOUT */
+
+.comparison{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+flex:1 1 45%;
+background:#020617;
+border-radius:12px;
+padding:25px;
+box-shadow:0 8px 25px rgba(0,0,0,0.4);
+border:1px solid #1e293b;
+}
+
+/* SAS STYLE */
+
+.sas{
+border-left:6px solid #38bdf8;
+}
+
+.sas h2{
+color:#38bdf8;
+}
+
+/* R STYLE */
+
+.r{
+border-left:6px solid #f97316;
+}
+
+.r h2{
+color:#f97316;
+}
+
+/* CODE */
+
+.code-container{
+position:relative;
+margin-top:15px;
+}
+
+pre{
+background:#020617;
+border:1px solid #1e293b;
+padding:18px;
+border-radius:8px;
+overflow:auto;
+font-size:14px;
+}
+
+/* COPY BUTTON */
+
+.copy-btn{
+position:absolute;
+top:10px;
+right:10px;
+background:#1e293b;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+font-size:12px;
+}
+
+.copy-btn:hover{
+background:#38bdf8;
+}
+
+/* OUTPUT BOX */
+
+.output{
+background:#14532d;
+padding:10px;
+margin-top:15px;
+border-radius:6px;
+font-size:14px;
+}
+
+/* LIBRARY BOX */
+
+.library-box{
+background:#1e293b;
+padding:10px;
+border-radius:6px;
+margin-bottom:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+.comparison{
+flex-direction:column;
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
-<h1>📊 PROC MEANS Example</h1>
+<div class="header">
+<h1>SAS → R Programming Guide</h1>
+</div>
+
+<!-- ================================= -->
+<!-- PROC MEANS BASIC -->
+<!-- ================================= -->
+
+<div class="section">
+
+<div class="section-title">PROC MEANS – Basic Example</div>
 
 <div class="comparison">
-  <!-- SAS PROC MEANS -->
-  <div class="card sas">
-    <h2>PROC MEANS</h2>
-    <p><strong>Syntax:</strong> PROC MEANS DATA=dataset; VAR var1 var2; RUN;</p>
-    <div class="code-container">
-      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
-      <pre>data example;
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS : PROC MEANS</h2>
+
+<p><b>Syntax</b><br>
+PROC MEANS DATA=dataset;<br>
+VAR variable;<br>
+RUN;
+</p>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
 input age height weight;
 datalines;
 23 170 65
@@ -46,62 +195,99 @@ run;
 
 proc means data=example mean std min max;
 var age height weight;
-run;</pre>
-    </div>
-    <p><strong>Explanation:</strong> Calculates descriptive statistics (mean, std, min, max) for numeric variables.</p>
-    <div class="output">
-age mean=27<br>
-height mean=175<br>
-weight mean=70
-</div>
-  </div>
+run;
+</pre>
 
-  <!-- R dplyr -->
-  <div class="card r">
-    <h2>R dplyr::summarise</h2>
-    <div class="library-box">
-      Install required library:<br>
-      <pre>install.packages("dplyr")</pre>
-      <br>
-    </div>
-    <p><strong>Syntax:</strong> summarise(data, mean(var1), sd(var1), min(var1), max(var1))</p>
-    <div class="code-container">
-      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
-      <pre>library(dplyr)
+</div>
+
+<p><b>Explanation</b><br>
+PROC MEANS calculates descriptive statistics like mean, std, minimum and maximum.</p>
+
+<div class="output">
+age mean = 27<br>
+height mean = 175<br>
+weight mean = 70
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R : dplyr summarise()</h2>
+
+<div class="library-box">
+Install package
+<pre>install.packages("dplyr")</pre>
+</div>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+library(dplyr)
 
 example <- data.frame(
-  age = c(23,30,28),
-  height = c(170,180,175),
-  weight = c(65,75,70)
+age = c(23,30,28),
+height = c(170,180,175),
+weight = c(65,75,70)
 )
 
 example %>%
-  summarise(
-    mean_age = mean(age),
-    std_age = sd(age),
-    min_age = min(age),
-    max_age = max(age)
-  )</pre>
-    </div>
-    <div class="output">
+summarise(
+mean_age = mean(age),
+std_age = sd(age),
+min_age = min(age),
+max_age = max(age)
+)
+</pre>
+
+</div>
+
+<div class="output">
 mean_age = 27<br>
 std_age ≈ 3.6<br>
 min_age = 23<br>
 max_age = 30
 </div>
-<h1>📊 PROC MEANS with CLASS Statement</h1>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================================= -->
+<!-- PROC MEANS CLASS -->
+<!-- ================================= -->
+
+<div class="section">
+
+<div class="section-title">PROC MEANS with CLASS Statement</div>
 
 <div class="comparison">
 
-  <!-- SAS PROC MEANS with CLASS -->
-  <div class="card sas">
-    <h2>PROC MEANS with CLASS</h2>
-    <p><strong>Syntax:</strong> PROC MEANS DATA=dataset; CLASS variable; VAR var; RUN;</p>
+<!-- SAS -->
 
-    <div class="code-container">
-      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<div class="card sas">
 
-<pre>data example;
+<h2>SAS : PROC MEANS with CLASS</h2>
+
+<p><b>Syntax</b><br>
+PROC MEANS DATA=dataset;<br>
+CLASS variable;<br>
+VAR variable;<br>
+RUN;
+</p>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data example;
 input gender $ age height weight;
 datalines;
 M 23 170 65
@@ -114,75 +300,86 @@ run;
 proc means data=example mean min max;
 class gender;
 var age weight;
-run;</pre>
+run;
+</pre>
 
-    </div>
-
-    <p><strong>Explanation:</strong> CLASS statement groups the data by the variable (gender) and calculates statistics separately for each group.</p>
-
-    <div class="output">
-Gender=M → age mean=25.5<br>
-Gender=F → age mean=27.5
 </div>
 
-  </div>
+<p><b>Explanation</b><br>
+CLASS groups the data and calculates statistics for each group.</p>
 
+<div class="output">
+Gender M → age mean = 25.5<br>
+Gender F → age mean = 27.5
+</div>
 
-  <!-- R Equivalent -->
-  <div class="card r">
+</div>
 
-    <h2>R dplyr::group_by</h2>
+<!-- R -->
 
-    <div class="library-box">
-Install required library:
+<div class="card r">
+
+<h2>R : group_by() + summarise()</h2>
+
+<div class="library-box">
+Install package
 <pre>install.packages("dplyr")</pre>
-    </div>
+</div>
 
-    <p><strong>Syntax:</strong> group_by(variable) %>% summarise()</p>
+<div class="code-container">
 
-    <div class="code-container">
-      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
 
-<pre>library(dplyr)
+<pre>
+library(dplyr)
 
 example <- data.frame(
-  gender = c("M","F","M","F"),
-  age = c(23,30,28,25),
-  height = c(170,180,175,165),
-  weight = c(65,75,70,60)
+gender = c("M","F","M","F"),
+age = c(23,30,28,25),
+height = c(170,180,175,165),
+weight = c(65,75,70,60)
 )
 
 example %>%
-  group_by(gender) %>%
-  summarise(
-    mean_age = mean(age),
-    min_age = min(age),
-    max_age = max(age)
-  )</pre>
-
-    </div>
-
-    <div class="output">
-gender M → mean_age = 25.5<br>
-gender F → mean_age = 27.5
-</div>
-
-  </div>
+group_by(gender) %>%
+summarise(
+mean_age = mean(age),
+min_age = min(age),
+max_age = max(age)
+)
+</pre>
 
 </div>
-    
-  </div>
+
+<div class="output">
+M → mean_age = 25.5<br>
+F → mean_age = 27.5
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 <script>
-function copyCode(button) {
-  const code = button.nextElementSibling.innerText;
-  navigator.clipboard.writeText(code).then(() => {
-    button.innerText = '✅Copied!';
-    setTimeout(() => { button.innerText = ' Copy'; }, 2000);
-  }).catch(err => console.error('Failed to copy: ', err));
+
+function copyCode(button){
+
+const code = button.nextElementSibling.innerText;
+
+navigator.clipboard.writeText(code);
+
+button.innerText="Copied";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
 }
+
 </script>
 
 </body>
+
 </html>
