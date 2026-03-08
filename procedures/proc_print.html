@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PROC PRINT - SAS vs R</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+.header{
+background:#020617;
+padding:25px;
+text-align:center;
+}
+
+.section{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:20px;
+color:#7dd3fc;
+}
+
+.comparison{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+flex:1 1 45%;
+background:#020617;
+padding:25px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.sas{
+border-left:6px solid #38bdf8;
+}
+
+.r{
+border-left:6px solid #f97316;
+}
+
+pre{
+background:#020617;
+padding:15px;
+border-radius:6px;
+border:1px solid #1e293b;
+overflow:auto;
+}
+
+.code-container{
+position:relative;
+}
+
+.copy-btn{
+position:absolute;
+top:5px;
+right:5px;
+background:#1e293b;
+border:none;
+padding:5px 10px;
+color:white;
+cursor:pointer;
+}
+
+.output{
+background:#14532d;
+padding:10px;
+margin-top:10px;
+border-radius:5px;
+}
+
+/* Table styling */
+
+.output-table table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+.output-table th,
+.output-table td{
+border:1px solid #1e293b;
+padding:8px;
+text-align:center;
+}
+
+.output-table th{
+background:#1e293b;
+color:#7dd3fc;
+}
+
+@media(max-width:800px){
+.comparison{
+flex-direction:column;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>PROC PRINT – SAS vs R</h1>
+</div>
+
+
+<!-- BASIC PROC PRINT -->
+
+<div class="section">
+
+<div class="section-title">Basic PROC PRINT</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC PRINT</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data students;
+input id name $ marks;
+datalines;
+1 John 85
+2 Mary 90
+3 David 88
+;
+run;
+
+proc print data=students;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+
+Output Dataset
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>MARKS</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>John</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Mary</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>David</td>
+<td>88</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R Print Data Frame</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+students <- data.frame(
+id=c(1,2,3),
+name=c("John","Mary","David"),
+marks=c(85,90,88)
+)
+
+print(students)
+</pre>
+
+</div>
+
+<div class="output">
+
+Output
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Marks</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>John</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Mary</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>David</td>
+<td>88</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PROC PRINT WITH VAR -->
+
+<div class="section">
+
+<div class="section-title">PROC PRINT with VAR Statement</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC PRINT with VAR</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+proc print data=students;
+var name marks;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+
+Output Dataset
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>NAME</th>
+<th>MARKS</th>
+</tr>
+
+<tr>
+<td>John</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>Mary</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>David</td>
+<td>88</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R Selecting Columns</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+students[,c("name","marks")]
+</pre>
+
+</div>
+
+<div class="output">
+
+Output
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Marks</th>
+</tr>
+
+<tr>
+<td>John</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>Mary</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>David</td>
+<td>88</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function copyCode(button){
+
+const code = button.nextElementSibling.innerText;
+
+navigator.clipboard.writeText(code);
+
+button.innerText="Copied";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
