@@ -167,6 +167,46 @@ pre {
   background:#14532d;
 }
 
+/* --------------------------
+   CENTER WELCOME SCREEN
+--------------------------- */
+
+.welcome-wrapper{
+  grid-column: 1 / span 2;   /* take full width of container grid */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:80vh;
+}
+
+.welcome-card{
+  background:#ffffff;
+  padding:50px;
+  border-radius:12px;
+  max-width:650px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  border:1px solid #d0d0d0;
+}
+
+.welcome-card h1{
+  margin-top:0;
+  color:#00bcd4;
+}
+
+.welcome-card p{
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* Dark mode version */
+
+.dark .welcome-card{
+  background:#1f1f1f;
+  color:white;
+  border:1px solid #333;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
 .dark .output-table th{
   background:#166534;
 }
