@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAT Function - SAS to R (Deep Blue Dark Theme)</title>
+  <title>CAT Function - SAS to R (Dark Theme)</title>
   <style>
     body { 
       font-family: Arial, sans-serif; 
       margin: 20px; 
-      background-color: #0d1b2a; /* deep blue dark background */
+      background-color: #121212; 
       color: #e0e0e0; 
     }
     h1 { color: #90caf9; }
@@ -21,7 +21,7 @@
     }
     .card { 
       flex: 1 1 45%; 
-      background: #1b263b; 
+      background: #1e1e1e; 
       padding: 20px; 
       border-radius: 10px; 
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -31,15 +31,15 @@
     .r { border-left: 5px solid #ff7f0e; }
 
     pre { 
-      background: #162447; 
+      background: #2c2c2c; 
       padding: 15px; 
       border-radius: 5px; 
       overflow-x: auto; 
       color: #f5f5f5;
     }
 
-    .output { 
-      background: #1f7a8c; 
+    .output, .library-box { 
+      background: #2e7d32; 
       padding: 10px; 
       border-radius: 5px; 
       margin-top: 10px; 
@@ -68,42 +68,47 @@
   <div class="card sas">
     <h2>SAS CAT</h2>
     <p><strong>Syntax:</strong></p>
-    <pre>CAT(argument1, argument2, ...)</pre>
+    <pre>CAT(argument-1, argument-2, ...)</pre>
 
     <p><strong>Example:</strong></p>
     <pre>data example;
-  text1 = "SAS";
-  text2 = "R";
-  combined = cat(text1, text2);
+  first = "Hello";
+  second = "World";
+  combined = cat(first, second);
 run;
 
 proc print data=example; run;</pre>
 
-    <p><strong>Explanation:</strong> Concatenates strings without adding any delimiter. Simply joins the values together.</p>
+    <p><strong>Explanation:</strong> Concatenates multiple character strings without any delimiter.</p>
     <div class="output">
-      text1 = SAS<br>
-      text2 = R<br>
-      combined = SASR
+      first = Hello<br>
+      second = World<br>
+      combined = HelloWorld
     </div>
   </div>
 
-  <!-- R paste0 -->
+  <!-- R stringr::str_c -->
   <div class="card r">
-    <h2>R paste0</h2>
+    <h2>R stringr::str_c</h2>
     <p><strong>Syntax:</strong></p>
-    <pre>paste0(...)</pre>
+    <pre>str_c(string1, string2, ..., sep = "")</pre>
 
     <p><strong>Example:</strong></p>
-    <pre>text1 <- "SAS"
-text2 <- "R"
-combined <- paste0(text1, text2)
-data.frame(text1, text2, combined)</pre>
+    <pre>library(stringr)
+first <- "Hello"
+second <- "World"
+combined <- str_c(first, second)
+combined</pre>
 
-    <p><strong>Explanation:</strong> Joins strings together **without any separator**, equivalent to SAS CAT.</p>
+    <p><strong>Explanation:</strong> Concatenates multiple strings. `sep=""` ensures no extra character between strings.</p>
+
+    <div class="library-box">
+      R Library: <code>stringr</code> must be installed using:<br>
+      <pre>install.packages("stringr")</pre>
+    </div>
+
     <div class="output">
-      text1 = SAS<br>
-      text2 = R<br>
-      combined = SASR
+      combined = HelloWorld
     </div>
   </div>
 </div>
