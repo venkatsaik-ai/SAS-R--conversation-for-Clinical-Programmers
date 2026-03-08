@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PROC TRANSPOSE - SAS to R Guide</title>
+<title>PROC TRANSPOSE - SAS vs R</title>
 
 <style>
 
@@ -87,6 +87,26 @@ margin-top:10px;
 border-radius:5px;
 }
 
+/* Table styling */
+
+.output-table table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+.output-table th,
+.output-table td{
+border:1px solid #1e293b;
+padding:8px;
+text-align:center;
+}
+
+.output-table th{
+background:#1e293b;
+color:#7dd3fc;
+}
+
 @media(max-width:800px){
 .comparison{
 flex-direction:column;
@@ -144,6 +164,7 @@ run;
 <div class="output-table">
 
 <table>
+
 <tr>
 <th>NAME</th>
 <th>COL1</th>
@@ -196,16 +217,44 @@ t(example[,2:3])
 </div>
 
 <div class="output">
-        [,1] [,2] [,3]<br>
-math     80   75   88<br>
-science  85   90   92
-</div>
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+
+<tr>
+<td>math</td>
+<td>80</td>
+<td>75</td>
+<td>88</td>
+</tr>
+
+<tr>
+<td>science</td>
+<td>85</td>
+<td>90</td>
+<td>92</td>
+</tr>
+
+</table>
 
 </div>
 
 </div>
 
 </div>
+
+</div>
+
+</div>
+
 
 <!-- TRANSPOSE WITH BY AND ID -->
 
@@ -251,11 +300,33 @@ run;
 </div>
 
 <div class="output">
-Output Dataset
 
-ID   Math   Science<br>
-1     80      85<br>
-2     75      90
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Math</th>
+<th>Science</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>80</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>75</td>
+<td>90</td>
+</tr>
+
+</table>
+
+</div>
+
 </div>
 
 </div>
@@ -287,10 +358,30 @@ values_from=score)
 </div>
 
 <div class="output">
-id   Math  Science<br>
-1     80     85<br>
-2     75     90
-</div>
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Math</th>
+<th>Science</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>80</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>75</td>
+<td>90</td>
+</tr>
+
+</table>
 
 </div>
 
@@ -298,6 +389,9 @@ id   Math  Science<br>
 
 </div>
 
+</div>
+
+</div>
 
 <script>
 
