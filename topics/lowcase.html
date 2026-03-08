@@ -16,7 +16,7 @@ h1 { color: #90caf9; }
 .copy-btn:hover { background-color: #555; color: #fff; }
 pre { background: #2c2c2c; padding: 15px; border-radius: 5px; overflow-x: auto; color: #f5f5f5; }
 .output, .library-box { background: #2e7d32; padding: 10px; border-radius: 5px; margin-top: 10px; font-weight: bold; color: #e0e0e0; }
-.library-box { margin-bottom: 20px; } /* spacing after library note */
+.library-box { margin-bottom: 20px; }
 h2 { margin-top: 0; }
 .sas h2 { color: #1f77b4; }
 .r h2 { color: #ff7f0e; }
@@ -48,14 +48,11 @@ proc print data=example; run;</pre>
   <!-- R Example -->
   <div class="card r">
     <h2>R tolower</h2>
-
-    <!-- Library install note -->
     <div class="library-box">
       R Base Function: <code>tolower()</code> does not require extra package.<br>
       If you plan to use <code>dplyr</code> functions later, install with:
       <pre>install.packages("dplyr")</pre>
     </div>
-
     <p><strong>Syntax:</strong> tolower(string)</p>
     <div class="code-container">
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
