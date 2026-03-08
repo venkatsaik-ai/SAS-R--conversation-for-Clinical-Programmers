@@ -89,6 +89,88 @@ std_age ≈ 3.6<br>
 min_age = 23<br>
 max_age = 30
 </div>
+<h1>📊 PROC MEANS with CLASS Statement</h1>
+
+<div class="comparison">
+
+  <!-- SAS PROC MEANS with CLASS -->
+  <div class="card sas">
+    <h2>PROC MEANS with CLASS</h2>
+    <p><strong>Syntax:</strong> PROC MEANS DATA=dataset; CLASS variable; VAR var; RUN;</p>
+
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+
+<pre>data example;
+input gender $ age height weight;
+datalines;
+M 23 170 65
+F 30 180 75
+M 28 175 70
+F 25 165 60
+;
+run;
+
+proc means data=example mean min max;
+class gender;
+var age weight;
+run;</pre>
+
+    </div>
+
+    <p><strong>Explanation:</strong> CLASS statement groups the data by the variable (gender) and calculates statistics separately for each group.</p>
+
+    <div class="output">
+Gender=M → age mean=25.5<br>
+Gender=F → age mean=27.5
+</div>
+
+  </div>
+
+
+  <!-- R Equivalent -->
+  <div class="card r">
+
+    <h2>R dplyr::group_by</h2>
+
+    <div class="library-box">
+Install required library:
+<pre>install.packages("dplyr")</pre>
+    </div>
+
+    <p><strong>Syntax:</strong> group_by(variable) %>% summarise()</p>
+
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+
+<pre>library(dplyr)
+
+example <- data.frame(
+  gender = c("M","F","M","F"),
+  age = c(23,30,28,25),
+  height = c(170,180,175,165),
+  weight = c(65,75,70,60)
+)
+
+example %>%
+  group_by(gender) %>%
+  summarise(
+    mean_age = mean(age),
+    min_age = min(age),
+    max_age = max(age)
+  )</pre>
+
+    </div>
+
+    <div class="output">
+gender M → mean_age = 25.5<br>
+gender F → mean_age = 27.5
+</div>
+
+  </div>
+
+</div>
+    
   </div>
 </div>
 
