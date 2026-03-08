@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PROC UNIVARIATE - SAS vs R</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+.header{
+background:#020617;
+padding:25px;
+text-align:center;
+}
+
+.section{
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:20px;
+color:#7dd3fc;
+}
+
+.comparison{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+flex:1 1 45%;
+background:#020617;
+padding:25px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.sas{
+border-left:6px solid #38bdf8;
+}
+
+.r{
+border-left:6px solid #f97316;
+}
+
+pre{
+background:#020617;
+padding:15px;
+border-radius:6px;
+border:1px solid #1e293b;
+overflow:auto;
+}
+
+.code-container{
+position:relative;
+}
+
+.copy-btn{
+position:absolute;
+top:5px;
+right:5px;
+background:#1e293b;
+border:none;
+padding:5px 10px;
+color:white;
+cursor:pointer;
+}
+
+.output{
+background:#14532d;
+padding:10px;
+margin-top:10px;
+border-radius:5px;
+}
+
+.output-table table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+.output-table th,
+.output-table td{
+border:1px solid #1e293b;
+padding:8px;
+text-align:center;
+}
+
+.output-table th{
+background:#1e293b;
+color:#7dd3fc;
+}
+
+@media(max-width:800px){
+.comparison{
+flex-direction:column;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>PROC UNIVARIATE – SAS vs R</h1>
+</div>
+
+<!-- BASIC UNIVARIATE -->
+
+<div class="section">
+
+<div class="section-title">Basic PROC UNIVARIATE</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS PROC UNIVARIATE</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+data scores;
+input score;
+datalines;
+70
+80
+85
+90
+95
+;
+run;
+
+proc univariate data=scores;
+var score;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+
+<tr>
+<td>Mean</td>
+<td>84</td>
+</tr>
+
+<tr>
+<td>Median</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>Std Dev</td>
+<td>9.62</td>
+</tr>
+
+<tr>
+<td>Minimum</td>
+<td>70</td>
+</tr>
+
+<tr>
+<td>Maximum</td>
+<td>95</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R Summary Statistics</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+scores <- c(70,80,85,90,95)
+
+summary(scores)
+sd(scores)
+</pre>
+
+</div>
+
+<div class="output">
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+
+<tr>
+<td>Min</td>
+<td>70</td>
+</tr>
+
+<tr>
+<td>1st Quartile</td>
+<td>80</td>
+</tr>
+
+<tr>
+<td>Median</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>Mean</td>
+<td>84</td>
+</tr>
+
+<tr>
+<td>3rd Quartile</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>Max</td>
+<td>95</td>
+</tr>
+
+<tr>
+<td>Std Dev</td>
+<td>9.62</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- UNIVARIATE WITH HISTOGRAM -->
+
+<div class="section">
+
+<div class="section-title">PROC UNIVARIATE with Histogram</div>
+
+<div class="comparison">
+
+<!-- SAS -->
+
+<div class="card sas">
+
+<h2>SAS Histogram</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+proc univariate data=scores;
+var score;
+histogram score;
+run;
+</pre>
+
+</div>
+
+<div class="output">
+
+Histogram of Score Distribution
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>Score Range</th>
+<th>Frequency</th>
+</tr>
+
+<tr>
+<td>70 - 79</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>80 - 89</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>90 - 99</td>
+<td>2</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- R -->
+
+<div class="card r">
+
+<h2>R Histogram</h2>
+
+<div class="code-container">
+
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre>
+hist(scores)
+</pre>
+
+</div>
+
+<div class="output">
+
+Histogram Frequency Table
+
+<div class="output-table">
+
+<table>
+
+<tr>
+<th>Score Range</th>
+<th>Frequency</th>
+</tr>
+
+<tr>
+<td>70 - 79</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>80 - 89</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>90 - 99</td>
+<td>2</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function copyCode(button){
+
+const code = button.nextElementSibling.innerText;
+
+navigator.clipboard.writeText(code);
+
+button.innerText="Copied";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
