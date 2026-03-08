@@ -129,3 +129,44 @@ pre {
   background: #2c2c2c;
   color: #00ff9c;
 }
+
+/* --------------------------
+   OUTPUT TABLE STYLE
+--------------------------- */
+
+.output-table{
+  background:#14532d;
+  padding:12px;
+  margin-top:15px;
+  border-radius:6px;
+  overflow-x:auto;
+}
+
+.output-table table{
+  width:100%;
+  border-collapse:collapse;
+  color:white;
+  font-size:14px;
+}
+
+.output-table th,
+.output-table td{
+  border:1px solid #1e293b;
+  padding:8px;
+  text-align:center;
+}
+
+.output-table th{
+  background:#166534;
+  font-weight:bold;
+}
+
+/* Dark mode support */
+
+.dark .output-table{
+  background:#14532d;
+}
+
+.dark .output-table th{
+  background:#166534;
+}
