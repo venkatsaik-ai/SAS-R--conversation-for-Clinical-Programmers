@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PROPERCASE Function - SAS to R (Dark Theme)</title>
 <style>
-/* Same styles as previous pages */
 body { font-family: Arial; margin: 20px; background: #121212; color: #e0e0e0; }
 h1 { color: #90caf9; }
 .comparison { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
@@ -17,6 +16,7 @@ h1 { color: #90caf9; }
 .copy-btn:hover { background-color: #555; color: #fff; }
 pre { background: #2c2c2c; padding: 15px; border-radius: 5px; overflow-x: auto; color: #f5f5f5; }
 .output, .library-box { background: #2e7d32; padding: 10px; border-radius: 5px; margin-top: 10px; font-weight: bold; color: #e0e0e0; }
+.library-box { margin-bottom: 20px; } /* add spacing after library note */
 h2 { margin-top: 0; }
 .sas h2 { color: #1f77b4; }
 .r h2 { color: #ff7f0e; }
@@ -28,6 +28,7 @@ h2 { margin-top: 0; }
 <h1>📚 PROPERCASE Function Example</h1>
 
 <div class="comparison">
+  <!-- SAS Example -->
   <div class="card sas">
     <h2>SAS PROPERCASE</h2>
     <p><strong>Syntax:</strong> PROPCASE(string)</p>
@@ -40,17 +41,20 @@ run;
 
 proc print data=example; run;</pre>
     </div>
-    <p><strong>Explanation:</strong> Converts first letter of each word to uppercase.</p>
+    <p><strong>Explanation:</strong> Converts the first letter of each word to uppercase.</p>
     <div class="output">prop_text = "Sas Programming"</div>
   </div>
-  
-<div class="library-box">
-R Library: <code>stringr</code> must be installed to use <code>str_to_title()</code>:
-<pre>install.packages("stringr")</pre>
-</div>
-  
+
+  <!-- R Example -->
   <div class="card r">
     <h2>R stringr::str_to_title</h2>
+
+    <!-- Library install note -->
+    <div class="library-box">
+      R Library: <code>stringr</code> must be installed to use <code>str_to_title()</code>:
+      <pre>install.packages("stringr")</pre>
+    </div>
+
     <p><strong>Syntax:</strong> str_to_title(string)</p>
     <div class="code-container">
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -59,10 +63,6 @@ text <- "sas programming"
 prop_text <- str_to_title(text)
 prop_text</pre>
     </div>
-    <div class="library-box">
-      R Library: <code>stringr</code> must be installed:<br>
-      <pre>install.packages("stringr")</pre>
-    </div>
     <div class="output">prop_text = "Sas Programming"</div>
   </div>
 </div>
@@ -70,8 +70,10 @@ prop_text</pre>
 <script>
 function copyCode(button) {
   const code = button.nextElementSibling.innerText;
-  navigator.clipboard.writeText(code).then(() => { button.innerText = '✅ Copied!'; setTimeout(() => { button.innerText = '📋 Copy'; }, 2000); })
-  .catch(err => console.error('Failed to copy: ', err));
+  navigator.clipboard.writeText(code).then(() => {
+    button.innerText = '✅ Copied!';
+    setTimeout(() => { button.innerText = '📋 Copy'; }, 2000);
+  }).catch(err => console.error('Failed to copy: ', err));
 }
 </script>
 
