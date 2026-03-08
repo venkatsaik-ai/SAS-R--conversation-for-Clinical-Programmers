@@ -144,7 +144,7 @@ function copyCode(button) {
   const code = button.nextElementSibling.innerText;
   navigator.clipboard.writeText(code).then(() => {
     button.innerText = '✅ Copied!';
-    setTimeout(() => { button.innerText = '📋 Copy'; }, 2000);
+    setTimeout(() => { button.innerText = ' Copy '; }, 2000);
   }).catch(err => console.error('Failed to copy: ', err));
 }
 </script>
